@@ -11,7 +11,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## What's the use
 
+<<<<<<< HEAD
 Do LaTeX commands work in here? $\vec{F} = m \cdot \vec{a}$ seems nice and it even gives a preview.
+=======
+Does LaTeX commands work in here? $\vec{F} = m \cdot \vec{a}$ seems nice and it even gives a preview.
+>>>>>>> 0b8a2aa138ea05a2f46b01a5c9f0afe00406b0c0
 
 But what happens if we switch lines?
 
@@ -24,7 +28,11 @@ You can also embed plots, for example:a
 plot(pressure)
 ```
 
+<<<<<<< HEAD
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the. What if we just add some text and delete a word?
+=======
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+>>>>>>> 0b8a2aa138ea05a2f46b01a5c9f0afe00406b0c0
 
 ```{r cars}
 summary(cars)
