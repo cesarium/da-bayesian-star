@@ -3,9 +3,6 @@ library('rgl')
 
 m_estimate = 1.773521e+68
 
-mcmc <- read.csv(file = 'mcmc.R',sep=',', header=FALSE)
-names(mcmc) = c('nu.chain','g.chain')
-
 # #########################################################################################
 # Stuff already in Jupyter Notebook
 # #########################################################################################
@@ -34,11 +31,7 @@ S_1 = sum((d_i-1)^2)
 
 # #############################################################################
 
-f_i <- function(nu,g){
-  
-  exp(-log(2)*(nu_i-nu)^2/g^2) * sqrt(log(2)/pi) / g
-  
-}
+f_i <- function(nu,g){exp(-log(2)*(nu_i-nu)^2/g^2) * sqrt(log(2)/pi) / g}
 
 # #############################################################################
 
@@ -58,7 +51,7 @@ unnormalized.posterior <- function(nu,g){
 
 vec_unnormalized.posterior <- function(Nu,G){Vectorize(unnormalized.posterior,vectorize.args = c('nu','g'))(Nu,G)}
 
-Gp.posterior <- function(nu,g){ vec_unnormalized.posterior(nu,g) / m_estimate } 
+Gp.posterior <- function(nu,g){ log(vec_unnormalized.posterior(nu,g) / m_estimate ,base=10) } 
 
 # #########################################################################################
 # #########################################################################################
@@ -66,8 +59,12 @@ Gp.posterior <- function(nu,g){ vec_unnormalized.posterior(nu,g) / m_estimate }
 # #########################################################################################
 # 3D plotting
 # #########################################################################################
-x = seq(1417,1419,length.out = 100)
-y = seq(1.4,2.8,length.out = 100)
+#x = seq(1417,1419,length.out = 100)
+#y = seq(1.4,2.8,length.out = 100)
+
+x = seq(1400,1440,length.out = 100)
+y = seq(0.2,9.39,length.out = 100)
+
 z = outer(x,y,Gp.posterior)
 
 open3d()
