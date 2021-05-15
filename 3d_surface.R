@@ -51,7 +51,7 @@ unnormalized.posterior <- function(nu,g){
 
 vec_unnormalized.posterior <- function(Nu,G){Vectorize(unnormalized.posterior,vectorize.args = c('nu','g'))(Nu,G)}
 
-Gp.posterior <- function(nu,g){ log(vec_unnormalized.posterior(nu,g) / m_estimate ,base=10) } 
+log10.Gp.posterior <- function(nu,g){ log( vec_unnormalized.posterior(nu,g) / m_estimate , base=10) } 
 
 # #########################################################################################
 # #########################################################################################
@@ -62,18 +62,17 @@ Gp.posterior <- function(nu,g){ log(vec_unnormalized.posterior(nu,g) / m_estimat
 #x = seq(1417,1419,length.out = 100)
 #y = seq(1.4,2.8,length.out = 100)
 
-x = seq(1400,1440,length.out = 100)
-y = seq(0.2,9.39,length.out = 100)
-
-z = outer(x,y,Gp.posterior)
-
+x = seq(1414,1422,length.out = 200)
+y = seq(1.2,3,length.out = 200)
+z = outer(x,y,log10.Gp.posterior)
+z[!is.finite(z)] = NA
 open3d()
 
 persp3d(x = x,
         y = y,
         z = z,
-        col = gray.colors(100, start =1, end = 0),
+        col = hsv(0.5, .35, seq(.45,.90,length.out = 12)),
         xlab = "v0 (MHz)",
         ylab = "g",
-        zlab = "p(v0,g|D,M,I)"
+        zlab = "log10 [ p(v0,g|D,M,I) ]"
 )
