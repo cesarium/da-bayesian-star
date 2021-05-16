@@ -76,3 +76,15 @@ persp3d(x = x,
         ylab = "g",
         zlab = "log10 [ p(v0,g|D,M,I) ]"
 )
+
+nu_estimativa = 1418.24
+g_estimativa = 1.92
+z_estimativa = log10.Gp.posterior(nu_estimativa,g_estimativa)
+
+abclines3d(nu_estimativa,
+           g_estimativa,
+           z_estimativa,
+           a = diag(3), col = "red",size=5)
+
+decorate3d(main = 'log10 da distribuição de probabilidades conjunta',
+           sub = 'A intersecção das 3 linhas a vermelho corresponde ao ponto estimado pelas cadeias de Monte Carlo.')
